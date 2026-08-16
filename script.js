@@ -1,150 +1,185 @@
-// // Portfolio JavaScript
+// Portfolio JavaScript
 
-// // ===============================
-// // Typing Animation
-// // ===============================
+// ===============================
+// Typing Animation
+// ===============================
 
-// const typingText = document.querySelector(".hero h3");
+const typingText = document.querySelector(".hero h3");
 
-// const roles = [
-//     "Frontend Developer",
-//     "Web Developer",
-//     "MCA Graduate"
-// ];
+const roles = [
+    "Frontend Developer",
+    "Web Developer",
+    "MCA Graduate"
+];
 
-// let roleIndex = 0;
-// let charIndex = 0;
-// let deleting = false;
+let roleIndex = 0;
+let charIndex = 0;
+let deleting = false;
 
-// function typeEffect() {
-//     if (!typingText) return;
+function typeEffect() {
 
-//     const currentRole = roles[roleIndex];
+    if (!typingText) return;
 
-//     if (!deleting) {
-//         typingText.textContent = currentRole.substring(0, charIndex + 1);
-//         charIndex++;
+    const currentRole = roles[roleIndex];
 
-//         if (charIndex === currentRole.length) {
-//             deleting = true;
-//             setTimeout(typeEffect, 1500);
-//             return;
-//         }
-//     } else {
-//         typingText.textContent = currentRole.substring(0, charIndex - 1);
-//         charIndex--;
+    if (!deleting) {
 
-//         if (charIndex === 0) {
-//             deleting = false;
-//             roleIndex = (roleIndex + 1) % roles.length;
-//         }
-//     }
+        typingText.textContent =
+            currentRole.substring(0, charIndex + 1);
 
-//     setTimeout(typeEffect, deleting ? 60 : 100);
-// }
+        charIndex++;
 
-// typeEffect();
+        if (charIndex === currentRole.length) {
 
+            deleting = true;
 
-// // ===============================
-// // Active Navigation Link
-// // ===============================
+            setTimeout(typeEffect, 1500);
 
-// const sections = document.querySelectorAll("section");
-// const navLinks = document.querySelectorAll("nav a");
+            return;
+        }
 
-// window.addEventListener("scroll", () => {
+    } else {
 
-//     let currentSection = "";
+        typingText.textContent =
+            currentRole.substring(0, charIndex - 1);
 
-//     sections.forEach((section) => {
+        charIndex--;
 
-//         const sectionTop = section.offsetTop - 120;
+        if (charIndex === 0) {
 
-//         if (window.scrollY >= sectionTop) {
-//             currentSection = section.getAttribute("id");
-//         }
+            deleting = false;
 
-//     });
+            roleIndex = (roleIndex + 1) % roles.length;
+        }
+    }
 
-//     navLinks.forEach((link) => {
+    setTimeout(
+        typeEffect,
+        deleting ? 60 : 100
+    );
+}
 
-//         link.style.color = "";
-
-//         if (link.getAttribute("href") === `#${currentSection}`) {
-//             link.style.color = "#38bdf8";
-//         }
-
-//     });
-
-// });
+typeEffect();
 
 
-// // ===============================
-// // Project Button Interaction
-// // ===============================
+// ===============================
+// Active Navigation
+// ===============================
 
-// const projectButton = document.querySelector(".btn");
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
 
-// if (projectButton) {
+window.addEventListener("scroll", () => {
 
-//     projectButton.addEventListener("click", () => {
+    let currentSection = "";
 
-//         const projectsSection = document.querySelector("#projects");
+    sections.forEach((section) => {
 
-//         if (projectsSection) {
-//             projectsSection.scrollIntoView({
-//                 behavior: "smooth"
-//             });
-//         }
+        const sectionTop = section.offsetTop - 120;
 
-//     });
+        if (window.scrollY >= sectionTop) {
 
-// }
+            currentSection =
+                section.getAttribute("id");
+        }
+
+    });
+
+    navLinks.forEach((link) => {
+
+        link.style.color = "";
+
+        if (
+            link.getAttribute("href") ===
+            `#${currentSection}`
+        ) {
+
+            link.style.color = "#38bdf8";
+        }
+
+    });
+
+});
 
 
-// // ===============================
-// // Welcome Message
-// // ===============================
+// ===============================
+// Project Button
+// ===============================
 
-// console.log("Welcome to Dande Mahesh's Portfolio!");
+const projectButton =
+    document.querySelector(".btn");
+
+if (projectButton) {
+
+    projectButton.addEventListener("click", () => {
+
+        const projectsSection =
+            document.querySelector("#projects");
+
+        if (projectsSection) {
+
+            projectsSection.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+    });
+
+}
 
 
-// // ===============================
-// // Scroll Reveal Animation
-// // ===============================
+// ===============================
+// Scroll Reveal Animation
+// ===============================
 
-// const revealElements = document.querySelectorAll(
-//     ".project, .skill, .education-item, .about"
-// );
+const revealElements =
+    document.querySelectorAll(
+        ".project, .skill, .education-item, .about"
+    );
 
-// const revealObserver = new IntersectionObserver(
-//     (entries) => {
+const revealObserver =
+    new IntersectionObserver(
+        (entries) => {
 
-//         entries.forEach((entry) => {
+            entries.forEach((entry) => {
 
-//             if (entry.isIntersecting) {
+                if (entry.isIntersecting) {
 
-//                 entry.target.style.opacity = "1";
-//                 entry.target.style.transform = "translateY(0)";
+                    entry.target.style.opacity = "1";
 
-//             }
+                    entry.target.style.transform =
+                        "translateY(0)";
+                }
 
-//         });
+            });
 
-//     },
-//     {
-//         threshold: 0.15
-//     }
-// );
+        },
+        {
+            threshold: 0.15
+        }
+    );
 
-// revealElements.forEach((element) => {
 
-//     element.style.opacity = "0";
-//     element.style.transform = "translateY(30px)";
-//     element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+revealElements.forEach((element) => {
 
-//     revealObserver.observe(element);
+    element.style.opacity = "0";
 
-// });
-alert("JavaScript is working!");
+    element.style.transform =
+        "translateY(30px)";
+
+    element.style.transition =
+        "opacity 0.6s ease, transform 0.6s ease";
+
+    revealObserver.observe(element);
+
+});
+
+
+// ===============================
+// Console Message
+// ===============================
+
+console.log(
+    "Welcome to Dande Mahesh's Portfolio!"
+);
